@@ -116,7 +116,7 @@
                 'paymentTyp': '',
                 'totalAmount': 0,
                 'status': '',
-                'payDt': '2023-11-09',
+                'payDt': '2023-11-10',
             }
         },
         methods:{

@@ -83,6 +83,34 @@ public class PaymentHistory {
 
     //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
+    public static void payCancel(OrderDenied orderDenied) {
+        //implement business logic here:
+
+        /** Example 1:  new item 
+        PaymentHistory paymentHistory = new PaymentHistory();
+        repository().save(paymentHistory);
+
+        PayCanceled payCanceled = new PayCanceled(paymentHistory);
+        payCanceled.publishAfterCommit();
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(orderDenied.get???()).ifPresent(paymentHistory->{
+            
+            paymentHistory // do something
+            repository().save(paymentHistory);
+
+            PayCanceled payCanceled = new PayCanceled(paymentHistory);
+            payCanceled.publishAfterCommit();
+
+         });
+        */
+
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
     public static void payResquest(Ordered ordered) {
         //implement business logic here:
 

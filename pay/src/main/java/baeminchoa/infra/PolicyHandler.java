@@ -41,6 +41,22 @@ public class PolicyHandler {
 
     @StreamListener(
         value = KafkaProcessor.INPUT,
+        condition = "headers['type']=='OrderDenied'"
+    )
+    public void wheneverOrderDenied_PayCancel(
+        @Payload OrderDenied orderDenied
+    ) {
+        OrderDenied event = orderDenied;
+        System.out.println(
+            "\n\n##### listener PayCancel : " + orderDenied + "\n\n"
+        );
+
+        // Sample Logic //
+        PaymentHistory.payCancel(event);
+    }
+
+    @StreamListener(
+        value = KafkaProcessor.INPUT,
         condition = "headers['type']=='Ordered'"
     )
     public void wheneverOrdered_PayResquest(@Payload Ordered ordered) {

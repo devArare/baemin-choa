@@ -2,6 +2,7 @@ package baeminchoa.domain;
 
 import baeminchoa.OrderApplication;
 import baeminchoa.domain.OrderCanceled;
+import baeminchoa.domain.OrderDenied;
 import baeminchoa.domain.Ordered;
 import java.time.LocalDate;
 import java.util.Date;
@@ -37,6 +38,9 @@ public class Order {
     public void onPostPersist() {
         Ordered ordered = new Ordered(this);
         ordered.publishAfterCommit();
+
+        OrderDenied orderDenied = new OrderDenied(this);
+        orderDenied.publishAfterCommit();
     }
 
     @PreRemove
@@ -65,6 +69,30 @@ public class Order {
         /** Example 2:  finding and process
         
         repository().findById(payCompleted.get???()).ifPresent(order->{
+            
+            order // do something
+            repository().save(order);
+
+
+         });
+        */
+
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public static void updateStatus(PayCanceled payCanceled) {
+        //implement business logic here:
+
+        /** Example 1:  new item 
+        Order order = new Order();
+        repository().save(order);
+
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(payCanceled.get???()).ifPresent(order->{
             
             order // do something
             repository().save(order);

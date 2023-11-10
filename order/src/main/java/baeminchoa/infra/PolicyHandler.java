@@ -38,5 +38,21 @@ public class PolicyHandler {
         // Sample Logic //
         Order.updateStatus(event);
     }
+
+    @StreamListener(
+        value = KafkaProcessor.INPUT,
+        condition = "headers['type']=='PayCanceled'"
+    )
+    public void wheneverPayCanceled_UpdateStatus(
+        @Payload PayCanceled payCanceled
+    ) {
+        PayCanceled event = payCanceled;
+        System.out.println(
+            "\n\n##### listener UpdateStatus : " + payCanceled + "\n\n"
+        );
+
+        // Sample Logic //
+        Order.updateStatus(event);
+    }
 }
 //>>> Clean Arch / Inbound Adaptor
